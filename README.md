@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup 
+Run the following: 
+1. `npm i @ffmpeg/ffmpeg @ffmpeg/core`
+2. `npm i react-scripts@latest`
+3. `npm i shaka-player`
+3. `npm start`
+
 ## Available Scripts
 
 In the project directory, you can run:

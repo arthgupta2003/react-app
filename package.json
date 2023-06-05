@@ -3,13 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ffmpeg/ffmpeg": "^0.9.3",
+    "@ffmpeg/core": "^0.11.0",
+    "@ffmpeg/ffmpeg": "^0.9.8",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "helmet": "^7.0.0",
+    "m3u8-to-mp4": "^1.0.0",
+    "mux.js": "^6.3.0",
+    "muxjs": "^2.4.18",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^5.0.1",
+    "shaka-player": "^4.3.6",
+    "shaka-player-react": "^1.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
