@@ -1,4 +1,3 @@
-
 /*
 If you are using server-side rendering, remember that this component should be loaded on client-side
 shaka player needs to be loaded on client-side, loading it on server-side may lead to error or undesired results
@@ -9,10 +8,8 @@ shaka player needs to be loaded on client-side, loading it on server-side may le
 importing dependencies and CSS file(s) required for UI customization
 */
 import React from 'react';
-import muxjs from "mux.js";
 import 'shaka-player/dist/controls.css';
 const shaka = require('shaka-player/dist/shaka-player.ui.js');
-
 
 //Creating class component
 class VideoPlayer extends React.PureComponent{
@@ -30,8 +27,6 @@ class VideoPlayer extends React.PureComponent{
 		//Initializing reference to error handlers
 		this.onErrorEvent = this.onErrorEvent.bind(this);
 		this.onError = this.onError.bind(this);
-		this.source = props.source
-		this.window.muxjs = muxjs;
 	}
 
 	onErrorEvent(event) {
@@ -47,7 +42,7 @@ class VideoPlayer extends React.PureComponent{
 	componentDidMount(){
 
 		//Link to MPEG-DASH video
-		var manifestUri = this.source;
+		var manifestUri = 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8';
 
 		//Getting reference to video and video container on DOM
 		const video = this.videoComponent.current;
@@ -55,6 +50,18 @@ class VideoPlayer extends React.PureComponent{
 
 		//Initialize shaka player
 		var player = new shaka.Player(video);
+
+		//Setting UI configuration JSON object
+		const uiConfig = {};
+
+		//Configuring elements to be displayed on video player control panel
+		  uiConfig['controlPanelElements'] = ['mute', 'volume', 'time_and_duration', 'fullscreen', 'overflow_menu', ];
+		  
+		//Setting up shaka player UI
+      	const ui = new shaka.ui.Overlay(player, videoContainer, video);
+
+        ui.configure(uiConfig); //configure UI
+      	ui.getControls();
 
 		// Listen for error events.
   		player.addEventListener('error', this.onErrorEvent);
@@ -79,10 +86,8 @@ class VideoPlayer extends React.PureComponent{
 			<div className="video-container" ref={this.videoContainer}>
 				<video 
 					className="shaka-video"
-					width = '75%'
 					ref={this.videoComponent}
 					poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
-					controls autoPlay
 				/>
 			</div>
 		);
